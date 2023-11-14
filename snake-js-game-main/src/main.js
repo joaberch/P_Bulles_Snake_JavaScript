@@ -1,49 +1,54 @@
 import '../css/style.css';
 
 //variable declaration
-let direction = 'R' //R = Right | L = Left | D = Down | U = Up
+let direction = 'D' //R = Right | L = Left | D = Down | U = Up
 let positionx = 3, positiony = 3;
+let speed = 250;
 
-//let snake = [  {x: 200, y: 200},  {x: 190, y: 200},  {x: 180, y: 200},  {x: 170, y: 200},  {x: 160, y: 200},];
+let head = true;
 let longueursnake = 3;
+
+//Making an array of array
+let x = new Array(16);
+for(let i = 0; i<16; ++i)
+{
+  x[i] = new Array(16)
+}
 
 //const declaration
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-//const move = () => {
+const move = () => {
 
-  // Dessine la grille de jeu
+  //Dessine la grille de jeu
   //ctx.fillStyle = 'black';
   //ctx.fillRect(0, 0, 800, 800);
+  main();
 
   // Rafraichit a chaque seconde
-  //setTimeout(() => {
-  //  requestAnimationFrame(move);
-  //}, 1000);
-  
-//};
+  setTimeout(() => {
+    requestAnimationFrame(move);
+  }, speed);
+  head = true;
+};
 
 ///////////////////////////////////////////////////   Code   /////////////////////////////////////////////////
 //alert(canvas);
 //alert(ctx);
 
-setTimeout(() => {
-  main();
-}, 1000);
-
 
 //////////////////////////////////////////////////   Function   ///////////////////////////////////////////////
 function main() {
   drawAllSnake();
-  checkDirection()
+  checkDirection();
 }
 
 function checkDirection() { //TODO : border and check up/down
   if (direction == 'R') { positionx += 50 }
   else if (direction == 'L') {positionx -= 50}
-  else if (direction == 'U') {positiony += 50}
-  else {positiony -= 50}
+  else if (direction == 'U') {positiony -= 50}
+  else {positiony += 50}
 }
 
 function drawAllSnake() {
@@ -56,7 +61,12 @@ function drawAllSnake() {
 function drawSnakePart() {
   ctx.beginPath();
   ctx.lineWidth = "5";
-  ctx.strokeStyle = "black";
+  if (head) {
+    ctx.strokeStyle = "Red"
+  } else {
+    ctx.strokeStyle = "black"
+  }
+  head = false;
   ctx.fillStyle = "Red";
   ctx.rect(positionx, positiony, 50, 50);
   ctx.stroke();
