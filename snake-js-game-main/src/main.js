@@ -1,4 +1,12 @@
 import '../css/style.css';
+import './apple';
+import './snake';
+
+/*TODO
+ Add a piece of snake where the head is
+ Move the head
+ If it hasn't eat anything we destroy the last piece
+*/
 
 //variable declaration
 let speed = 200;
@@ -11,6 +19,7 @@ let direction = 'R';
 let CheckApple = false;
 let SnakeSize = 4;
 let checkGameIsRunning = true
+let checkHasEaten
 
 let restartButton = {
   x: 250,
@@ -32,20 +41,6 @@ let snake = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 },]
 //const declaration
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-const arraySize = 15;
-
-//Making an array of array 
-let arrayPlayground = new Array(arraySize);
-for (let i = 0; i < arraySize; ++i) { //0 = empty | 1 = snake | 2 = apple
-  arrayPlayground[i] = new Array(arraySize)
-}
-
-for (let x = 0; x < arraySize; ++x) {
-  for (let y = 0; y < arraySize; ++y) {
-    arrayPlayground[x[y]] = 0
-  }
-}
-arrayPlayground[0[0]] = 1
 
 const move = () => {
   //Dessine la grille de jeu
@@ -60,9 +55,6 @@ const move = () => {
   }, speed);
 };
 
-///////////////////////////////////////////////////   Code   /////////////////////////////////////////////////
-
-
 //////////////////////////////////////////////////    EVENT    ////////////////////////////////////////////////
 document.addEventListener('keydown', arrowclicked) //Change the direction
 //TODO : Pause menu with an alert
@@ -70,14 +62,42 @@ document.addEventListener('keydown', arrowclicked) //Change the direction
 //////////////////////////////////////////////////   Function   ///////////////////////////////////////////////
 function main() {
   //Version 3
-  drawSnakeHead();
+  manageSnake();
+
   V3generateApple();
   drawApple();
-  moveSnake();
   collisionApple();
 
   drawScore();
   checkGameOver();
+}
+
+function manageSnake() {
+  addAChunckOfTheSnakeAtThePlaceOfTheHead()
+  moveTheHead()
+  if (checkHasEaten) {
+    deleteSnakeTail()
+  }
+  snake.forEach(drawSnake)
+}
+
+function drawSnake() {
+  drawSnakeHead();
+}
+
+function deleteSnakeTail() {
+  snake.pop()
+}
+
+function moveTheHead() {
+  if (direction == 'R') { ++positionx } //Going right
+  else if (direction == 'L') { --positionx } //Going left
+  else if (direction == 'D') { ++positiony } //Going up
+  else if (direction == 'U') { --positiony } //Going down
+}
+
+function addAChunckOfTheSnakeAtThePlaceOfTheHead() {
+  snake.push(positionx, positiony)
 }
 
 function gameInit() {
@@ -88,7 +108,7 @@ function gameInit() {
 }
 
 function checkGameOver() {
-  if (positionx > 16 || positionx < -1 || positiony > 16 || positiony < -1) {
+  if (positionx > 15 || positionx < 0 || positiony > 15 || positiony < 0) {
     checkGameIsRunning = false
 
     //draw a new background
@@ -129,8 +149,9 @@ function drawScore() {
 function collisionApple() {
   if (positionx == randomx && positiony == randomy) {
     CheckApple = true;
+    snake.push(positionx, positiony)
     ++SnakeSize;
-    snake.push()
+    alert(snake)
   }
 }
 
@@ -147,13 +168,6 @@ function V3generateApple() {
   }
 }
 
-function moveSnake() {
-  if (direction == 'R') { let snakePosition = [++positionx, positiony] } //Going right
-  else if (direction == 'L') { let snakePosition = [--positionx, positiony] } //Going left
-  else if (direction == 'D') { let snakePosition = [positionx, ++positiony] } //Going up
-  else if (direction == 'U') { let snakePosition = [positionx, --positiony] } //Going down
-}
-
 function drawApple() {
   ctx.beginPath();
   ctx.lineWidth = 5;
@@ -164,14 +178,12 @@ function drawApple() {
 }
 
 function drawSnakeHead() {
-  for (let i = 0; i <= SnakeSize; ++i) {
-    ctx.beginPath();
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = "darkred";
-    ctx.fillStyle = "red"; //TODO : find lightred
-    ctx.fillRect(positionx * 50, positiony * 50, 50, 50);
-    ctx.stroke();
-  }
+  ctx.beginPath();
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "darkred";
+  ctx.fillStyle = "red"; //TODO : find light_red
+  ctx.fillRect(positionx*50, positiony*50, 50, 50);
+  ctx.stroke();
 }
 
 function arrowclicked(event) {
@@ -211,7 +223,5 @@ canvas.addEventListener('click', function (evt) {
     }
   }
 }, false);
-
-
 
 requestAnimationFrame(move);
