@@ -1,5 +1,6 @@
 import '../css/style.css'
-import('./snake')
+//import { snakeclass } from './snake'
+//import('./snake')
 
 
 /* TODO :
@@ -59,11 +60,12 @@ document.addEventListener('keydown', arrowclicked) //Change the direction
 function main() {
   collisionApple()
   manageSnake()
+  //new snakeclass()
   generateApple()
   drawApple()
   drawScore()
   checkGameOver()
-  if (checkGameIsOver) { gameOver() }
+  checkGameIsOver ? gameOver():undefined
   checkOneMoveByFrame = false
 }
 
@@ -93,10 +95,16 @@ function deleteSnakeTail() {
 
 //Moving the snake
 function moveTheHead() {
-  if (direction == 'R') { ++positionx } //Going right
+  direction == "R" ? ++positionx:undefined
+  direction == "L" ? --positionx:undefined
+  direction == "D" ? ++positiony:undefined
+  direction == "U" ? --positiony:undefined
+
+  /*if (direction == 'R') { ++positionx } //Going right
   else if (direction == 'L') { --positionx } //Going left
   else if (direction == 'D') { ++positiony } //Going up
   else if (direction == 'U') { --positiony } //Going down
+  */
 
 }
 
@@ -149,15 +157,17 @@ function gameOver() {
 //Check the game is over
 function checkGameOver() {
   //if the snake touches the border
-  if (positionx > 15 || positionx < 0 || positiony > 15 || positiony < 0) {
+  positionx > 15 || positionx < 0 || positiony > 15 || positiony < 0 ? checkGameIsOver = true : undefined
+  /*if (positionx > 15 || positionx < 0 || positiony > 15 || positiony < 0) {
     checkGameIsOver = true
-  }
+  }*/
 
   //if the snake touches one of his chunk
   for (let i = 0; i < snake.length; i++) {
-    if (positionx == snake[i].x && positiony == snake[i].y) {
+    positionx == snake[i].x && positiony == snake[i].y ? checkGameIsOver = true : undefined
+    /*if (positionx == snake[i].x && positiony == snake[i].y) {
       checkGameIsOver = true
-    }
+    }*/
   }
 }
 
@@ -170,10 +180,11 @@ function drawScore() {
 
 //check if the snake has eaten an apple
 function collisionApple() {
-  if (positionx == applex && positiony == appley) {
+  positionx == applex && positiony == appley ? CheckApple = true && snake.push({x: positionx, y: positiony}) : undefined
+  /*if (positionx == applex && positiony == appley) {
     CheckApple = true
     snake.push({ x: positionx, y: positiony })
-  }
+  }*/
 }
 
 //get a random integer
