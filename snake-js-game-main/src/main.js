@@ -16,6 +16,7 @@ let direction = 'R';
 let CheckApple = false;
 let checkGameIsRunning = true
 let checkHasNotEaten = true
+let checkGameIsOver
 
 let restartButton = {
   x: 250,
@@ -50,15 +51,16 @@ document.addEventListener('keydown', arrowclicked) //Change the direction
 
 //////////////////////////////////////////////////   Function   ///////////////////////////////////////////////
 function main() {
-  //Version 3
-  manageSnake();
-
   V3generateApple();
   drawApple();
   collisionApple();
+  manageSnake();
 
   drawScore();
   checkGameOver();
+  if (checkGameIsOver) {
+    gameOver()
+  }
 }
 
 function manageSnake() {
@@ -66,7 +68,6 @@ function manageSnake() {
   moveTheHead()
   
   deleteSnakeTail()
-  //checkHasNotEaten = true
   drawAllSnake()
   //snake.forEach(drawSnake(positionx, positiony))
 }
@@ -101,12 +102,12 @@ function gameInit() {
   positionx = 4
   positiony = 0
   direction = "R"
-  snake = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]
+  checkGameIsOver = false
+  snake = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }]
 }
 
-function checkGameOver() {
-  if (positionx > 15 || positionx < 0 || positiony > 15 || positiony < 0) {
-    checkGameIsRunning = false
+function gameOver() {
+  checkGameIsRunning = false
 
     //draw a new background
     ctx.fillStyle = 'purple'
@@ -133,10 +134,25 @@ function checkGameOver() {
     ctx.fillStyle = 'black'
     ctx.font = "60px Arial"
     ctx.fillText("Restart", 300, 470)
+}
+
+function checkGameOver() {
+  //if the snake touches the border
+  if (positionx > 15 || positionx < 0 || positiony > 15 || positiony < 0) {
+    checkGameIsOver = true
+  }
+
+  //if the snake touches one of his chunk
+  for(let i = 0; i < snake.length; i++) {
+    if (positionx == snake[i].x && positiony == snake[i].y) {
+      checkGameIsOver = true
+    }
   }
 }
 
 function drawScore() {
+  ctx.strokeStyle = "green";
+  ctx.fillStyle = "green"
   ctx.font = "30px Arial";
   ctx.fillText(snake.length - 4, 50, 60);
 }
