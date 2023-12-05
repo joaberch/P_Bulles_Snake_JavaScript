@@ -1,4 +1,16 @@
 import '../css/style.css'
+import('./snake')
+
+
+/* TODO :
+check copy/paste
+namespace/classes/commit log
+Test
+Using classes (snake/apple)
+use fonction fleches
+use "rest"
+use snake.forEach
+*/
 
 ////////////////////////////////////////////////////////////// Variable declaration //////////////////////////////////////////////////
 
@@ -10,6 +22,7 @@ let CheckApple = false                                    //Check if there's an 
 let checkGameIsRunning = true                             //Check if the game is playing or if it's in the game over menu
 let checkGameIsOver                                       //Check if the game is over
 let appleSpawnIsOkay                                      //Check if the apple is spawning at the good position
+let checkOneMoveByFrame                                   //Check if there was already an input this frame
 
 //information about the restart button
 let restartButton = {
@@ -19,7 +32,7 @@ let restartButton = {
   height: 100,
 }
 
-let snake = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }]  //coordinate of each chunk of the snake
+let snake = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }]  //coordinates of each chunk of the snake
 
 //const declaration
 const canvas = document.querySelector('canvas')
@@ -44,27 +57,24 @@ document.addEventListener('keydown', arrowclicked) //Change the direction
 
 //////////////////////////////////////////////////   Function   ///////////////////////////////////////////////
 function main() {
-  generateApple()
-  drawApple()
   collisionApple()
   manageSnake()
-
+  generateApple()
+  drawApple()
   drawScore()
   checkGameOver()
-  if (checkGameIsOver) {
-    gameOver()
-  }
+  if (checkGameIsOver) { gameOver() }
+  checkOneMoveByFrame = false
 }
 
 function manageSnake() {
   addAChunckOfTheSnakeAtThePlaceOfTheHead()
   moveTheHead()
-
   deleteSnakeTail()
   drawAllSnake()
-  //snake.forEach(drawSnake(positionx, positiony))
 }
 
+//Draw all the part of the snake
 function drawAllSnake() {
   for (let i = 0; i < snake.length; i++) {
     ctx.beginPath()
@@ -76,6 +86,7 @@ function drawAllSnake() {
   }
 }
 
+//Remove a chunk of the snake
 function deleteSnakeTail() {
   snake.shift()
 }
@@ -86,6 +97,7 @@ function moveTheHead() {
   else if (direction == 'L') { --positionx } //Going left
   else if (direction == 'D') { ++positiony } //Going up
   else if (direction == 'U') { --positiony } //Going down
+
 }
 
 //add a chunk of the snake where the head is
@@ -201,10 +213,12 @@ function drawApple() {
 
 //event if the player click on an arrow
 function arrowclicked(event) {
-  if (event.keyCode == 37 && direction != 'R') { direction = 'L' }
-  else if (event.keyCode == 39 && direction != 'L') { direction = 'R' }
-  else if (event.keyCode == 38 && direction != 'D') { direction = 'U' }
-  else if (event.keyCode == 40 && direction != 'U') { direction = 'D' }
+  if (!checkOneMoveByFrame) {
+    if (event.keyCode == 37 && direction != 'R') { direction = 'L'; checkOneMoveByFrame = true }
+    else if (event.keyCode == 39 && direction != 'L') { direction = 'R'; checkOneMoveByFrame = true }
+    else if (event.keyCode == 38 && direction != 'D') { direction = 'U'; checkOneMoveByFrame = true }
+    else if (event.keyCode == 40 && direction != 'U') { direction = 'D'; checkOneMoveByFrame = true }
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////// Snippet ///////////////////////////////////////////////
