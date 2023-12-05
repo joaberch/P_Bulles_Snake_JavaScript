@@ -1,7 +1,4 @@
 import '../css/style.css';
-import './apple';
-import './snake';
-
 /*TODO
  Add a piece of snake where the head is
  Move the head
@@ -11,15 +8,14 @@ import './snake';
 //variable declaration
 let speed = 200;
 
-let randomx = getRandomInt(16);
-let randomy = getRandomInt(16);
+let applex = getRandomInt(16);
+let appley = getRandomInt(16);
 let positionx = 4;
 let positiony = 0;
 let direction = 'R';
 let CheckApple = false;
-let SnakeSize = 4;
 let checkGameIsRunning = true
-let checkHasEaten
+let checkHasNotEaten = true
 
 let restartButton = {
   x: 250,
@@ -28,15 +24,8 @@ let restartButton = {
   height: 100,
 }
 
-// The rectangle should have x,y,width,height properties
-var rect = {
-  x: 250,
-  y: 400,
-  width: 300,
-  height: 100,
-};
-
-let snake = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 },]
+//let snake = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 },] //dictionnaire
+let snake = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }]
 
 //const declaration
 const canvas = document.querySelector('canvas');
@@ -57,7 +46,7 @@ const move = () => {
 
 //////////////////////////////////////////////////    EVENT    ////////////////////////////////////////////////
 document.addEventListener('keydown', arrowclicked) //Change the direction
-//TODO : Pause menu with an alert
+//TODO : Pause menu with ???
 
 //////////////////////////////////////////////////   Function   ///////////////////////////////////////////////
 function main() {
@@ -75,18 +64,26 @@ function main() {
 function manageSnake() {
   addAChunckOfTheSnakeAtThePlaceOfTheHead()
   moveTheHead()
-  if (checkHasEaten) {
-    deleteSnakeTail()
-  }
-  snake.forEach(drawSnake)
+  
+  deleteSnakeTail()
+  //checkHasNotEaten = true
+  drawAllSnake()
+  //snake.forEach(drawSnake(positionx, positiony))
 }
 
-function drawSnake() {
-  drawSnakeHead();
+function drawAllSnake() {
+  for(let i = 0; i < snake.length; i++) {
+    ctx.beginPath()
+    ctx.lineWidth = 5
+    ctx.strokeStyle = "pink"
+    ctx.fillStyle = "red"
+    ctx.fillRect(snake[i].x*50, snake[i].y*50, 50, 50)
+    ctx.stroke()
+  }
 }
 
 function deleteSnakeTail() {
-  snake.pop()
+  snake.shift()
 }
 
 function moveTheHead() {
@@ -97,14 +94,14 @@ function moveTheHead() {
 }
 
 function addAChunckOfTheSnakeAtThePlaceOfTheHead() {
-  snake.push(positionx, positiony)
+  snake.push({x: positionx, y: positiony})
 }
 
 function gameInit() {
   positionx = 4
   positiony = 0
   direction = "R"
-  SnakeSize = 4
+  snake = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]
 }
 
 function checkGameOver() {
@@ -122,7 +119,7 @@ function checkGameOver() {
 
     //Write the score
     ctx.font = "30px Arial"
-    ctx.fillText(`Your score : ${SnakeSize - 4}`, 300, 350)
+    ctx.fillText(`Your score : ${snake.length - 4}`, 300, 350)
 
     //draw the restart button
     ctx.fillStyle = 'red'
@@ -136,22 +133,19 @@ function checkGameOver() {
     ctx.fillStyle = 'black'
     ctx.font = "60px Arial"
     ctx.fillText("Restart", 300, 470)
-
-
   }
 }
 
 function drawScore() {
   ctx.font = "30px Arial";
-  ctx.fillText(SnakeSize - 4, 50, 60);
+  ctx.fillText(snake.length - 4, 50, 60);
 }
 
 function collisionApple() {
-  if (positionx == randomx && positiony == randomy) {
+  if (positionx == applex && positiony == appley) {
     CheckApple = true;
-    snake.push(positionx, positiony)
-    ++SnakeSize;
-    alert(snake)
+    snake.push({x: positionx, y: positiony})
+    checkHasNotEaten = false
   }
 }
 
@@ -161,9 +155,9 @@ function getRandomInt(max) {
 
 function V3generateApple() {
   if (CheckApple) {
-    randomx = getRandomInt(16);
-    randomy = getRandomInt(16);
-    let applePosition = [randomx, randomy]
+    applex = getRandomInt(16);
+    appley = getRandomInt(16);
+    let applePosition = [applex, appley]
     CheckApple = false;
   }
 }
@@ -173,7 +167,7 @@ function drawApple() {
   ctx.lineWidth = 5;
   ctx.strokeStyle = "darkgreen";
   ctx.fillStyle = "lightgreen";
-  ctx.fillRect((randomx * 50), (randomy * 50), 50, 50);
+  ctx.fillRect((applex * 50), (appley * 50), 50, 50);
   ctx.stroke();
 }
 
