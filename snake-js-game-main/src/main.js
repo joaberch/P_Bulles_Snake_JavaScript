@@ -18,11 +18,11 @@ const speed = 150                                         //Speed at which the g
 let applex = getRandomInt(16), appley = getRandomInt(16)  //Apple coordinate
 let positionx = 4, positiony = 0                          //Position of the head of the snake
 let direction = 'R'                                       //Direction the snake is going (R = Right | L = Left | U = Up | D = Down)
-let CheckApple = false                                    //Check if there's an apple in the game
-let checkGameIsRunning = true                             //Check if the game is playing or if it's in the game over menu
-let checkGameIsOver                                       //Check if the game is over
-let appleSpawnIsOkay                                      //Check if the apple is spawning at the good position
-let checkOneMoveByFrame                                   //Check if there was already an input this frame
+let CheckApple = false                                    //Check whether there's an apple in the game
+let checkGameIsRunning = true                             //Check whether the game is playing or it's in the game over menu
+let checkGameIsOver                                       //Check whether the game is over
+let appleSpawnIsOkay                                      //Check whether the apple is spawning at a good position
+let checkOneMoveByFrame                                   //Check whether there was already an input pressed this frame
 
 //information about the restart button
 let restartButton = {
@@ -59,7 +59,8 @@ document.addEventListener('keydown', arrowclicked) //Change the direction
 function main() {
   collisionApple()
 
-  manageSnake()
+  addAChunckOfTheSnakeAtThePlaceOfTheHead()
+  deleteSnakeTail()
 
   generateApple()
 
@@ -67,18 +68,14 @@ function main() {
 
   drawScore()
 
-  checkGameOver()
+  drawAllSnake()
+  moveTheHead()
 
   checkGameIsOver ? gameOver():undefined
+
+  checkGameOver()
   
   checkOneMoveByFrame = false
-}
-
-function manageSnake() {
-  addAChunckOfTheSnakeAtThePlaceOfTheHead()
-  moveTheHead()
-  deleteSnakeTail()
-  drawAllSnake()
 }
 
 //Draw all the part of the snake
@@ -92,7 +89,7 @@ function drawAllSnake() {
     ctx.strokeRect(snake[i].x * 50, snake[i].y * 50, 50, 50)
     ctx.stroke()
   }
-}
+}gameOver
 
 //Remove a chunk of the snake
 function deleteSnakeTail() {
