@@ -3,7 +3,7 @@ export default class snakeclass {
     constructor() {
         let positionx = 4, positiony = 0                                                //Position of the head of the snake
         let direction = 'R'                                                             //Direction the snake is going (R = Right | L = Left | U = Up | D = Down)
-        let snake = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }]    //coordinates of each chunk of the snake
+        let snakebody = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }]    //coordinates of each chunk of the snake
         let checkOneMoveByFrame
     }
 

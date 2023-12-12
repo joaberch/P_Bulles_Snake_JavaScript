@@ -5,7 +5,6 @@ import snakeclass from './snake'
 /* TODO :
 check copy/paste
 namespace/classes/commit log
-Test
 Using classes (snake/apple)
 use fonction fleches
 use "rest" "..."
@@ -80,15 +79,17 @@ function main() {
 
 //Draw all the part of the snake
 function drawAllSnake() {
-  for (let i = 0; i < snake.length; i++) {
+  snake.forEach ((element) => {
     ctx.beginPath()
     ctx.lineWidth = 1
     ctx.strokeStyle = "white"
-    i == snake.length-1 ? ctx.fillStyle = "blue" : ctx.fillStyle = "red"
-    ctx.fillRect(snake[i].x * 50, snake[i].y * 50, 50, 50)
-    ctx.strokeRect(snake[i].x * 50, snake[i].y * 50, 50, 50)
+    element.x == positionx && element.y == positiony ? ctx.fillStyle = "blue" : ctx.fillStyle = "red"
+    ctx.fillRect(element.x * 50, element.y * 50, 50, 50)
+    ctx.strokeRect(element.x * 50, element.y * 50, 50, 50)
     ctx.stroke()
   }
+  )
+  
 }gameOver
 
 //Remove a chunk of the snake
