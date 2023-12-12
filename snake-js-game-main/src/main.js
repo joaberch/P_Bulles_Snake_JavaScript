@@ -89,8 +89,8 @@ function drawAllSnake() {
     ctx.stroke()
   }
   )
-  
-}gameOver
+
+}
 
 //Remove a chunk of the snake
 function deleteSnakeTail() {
@@ -154,13 +154,11 @@ function gameOver() {
 
 //Check the game is over
 function checkGameOver() {
-  //if the snake touches the border
+  //in case the snake touches the border
   positionx > 15 || positionx < 0 || positiony > 15 || positiony < 0 ? checkGameIsOver = true : undefined
 
-  //if the snake touches one of his chunk
-  for (let i = 0; i < snake.length; i++) {
-    positionx == snake[i].x && positiony == snake[i].y ? checkGameIsOver = true : undefined
-  }
+  //in case the snake touches one of his chunk
+  snake.forEach((element) => positionx == element.x && positiony == element.y ? checkGameIsOver = true : undefined)
 }
 
 //draw the score
@@ -188,9 +186,7 @@ function generateApple() {
       appley = getRandomInt(16)
       CheckApple = false
 
-      for (let i = 0; i < snake.length; ++i) {
-        snake[i].x == applex && snake[i].y == appley ? appleSpawnIsOkay = false : appleSpawnIsOkay = true //TODO : check
-      }
+      snake.forEach((element) => element.x == applex && element.y == appley ? appleSpawnIsOkay = false : appleSpawnIsOkay = true) //TODO : check
     }
     appleSpawnIsOkay = false
   }
