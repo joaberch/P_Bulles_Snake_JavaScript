@@ -213,17 +213,15 @@ function arrowclicked(event) {
 
 //Function to get the mouse position
 function getMousePos(canvas, event) {
-  var restartButton = canvas.getBoundingClientRect()
+  let restartButton = canvas.getBoundingClientRect()
   return {
     x: event.clientX - restartButton.left,
     y: event.clientY - restartButton.top,
   }
 }
 
-//Function to check whether a point is inside a rectangle
-function isInside(pos, restartButton) {
-  return pos.x > restartButton.x && pos.x < restartButton.x + restartButton.width && pos.y < restartButton.y + restartButton.height && pos.y > restartButton.y
-}
+//Function to check whether a point is inside the rectangle
+let isInside = (pos, restartButton) => pos.x > restartButton.x && pos.x < restartButton.x + restartButton.width && pos.y < restartButton.y + restartButton.height && pos.y > restartButton.y
 
 //Binding the click event on the canvas
 canvas.addEventListener('click', function (evt) {
