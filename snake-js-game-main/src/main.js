@@ -59,7 +59,7 @@ document.addEventListener('keydown', arrowclicked) //Change the direction
 function main() {
   collisionApple()
 
-  addAChunckOfTheSnakeAtThePlaceOfTheHead()
+  addAChunckOfTheSnakeWhereTheHeadIs()
   deleteSnakeTail()
 
   generateApple()
@@ -105,7 +105,7 @@ function moveTheHead() {
 }
 
 //add a chunk of the snake where the head is
-function addAChunckOfTheSnakeAtThePlaceOfTheHead() {
+function addAChunckOfTheSnakeWhereTheHeadIs() {
   snake.push({ x: positionx, y: positiony })
 }
 
@@ -234,7 +234,6 @@ canvas.addEventListener('click', function (evt) {
   if (!checkGameIsRunning) {
     if (isInside(mousePos, restartButton)) {
       checkGameIsRunning = true
-      main()
 
       //Initialise the variable for a new game
       gameInit()
