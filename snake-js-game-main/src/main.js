@@ -1,5 +1,5 @@
 import '../css/style.css'
-//import snakeclass from './snake'
+import snakeclass from './snake'
 
 
 /* TODO :
@@ -58,12 +58,19 @@ document.addEventListener('keydown', arrowclicked) //Change the direction
 //////////////////////////////////////////////////   Function   ///////////////////////////////////////////////
 function main() {
   collisionApple()
+
   manageSnake()
+
   generateApple()
+
   drawApple()
+
   drawScore()
+
   checkGameOver()
+
   checkGameIsOver ? gameOver():undefined
+  
   checkOneMoveByFrame = false
 }
 
@@ -78,9 +85,11 @@ function manageSnake() {
 function drawAllSnake() {
   for (let i = 0; i < snake.length; i++) {
     ctx.beginPath()
-    ctx.lineWidth = 5
+    ctx.lineWidth = 1
+    ctx.strokeStyle = "white"
     i == snake.length-1 ? ctx.fillStyle = "blue" : ctx.fillStyle = "red"
     ctx.fillRect(snake[i].x * 50, snake[i].y * 50, 50, 50)
+    ctx.strokeRect(snake[i].x * 50, snake[i].y * 50, 50, 50)
     ctx.stroke()
   }
 }
@@ -136,6 +145,7 @@ function gameOver() {
 
   //draw the border of the restart button
   ctx.strokeStyle = 'black'
+  ctx.lineWidth = 5
   ctx.strokeRect(250, 400, 300, 100)
 
   //Write the restart in the button
@@ -148,16 +158,10 @@ function gameOver() {
 function checkGameOver() {
   //if the snake touches the border
   positionx > 15 || positionx < 0 || positiony > 15 || positiony < 0 ? checkGameIsOver = true : undefined
-  /*if (positionx > 15 || positionx < 0 || positiony > 15 || positiony < 0) {
-    checkGameIsOver = true
-  }*/
 
   //if the snake touches one of his chunk
   for (let i = 0; i < snake.length; i++) {
     positionx == snake[i].x && positiony == snake[i].y ? checkGameIsOver = true : undefined
-    /*if (positionx == snake[i].x && positiony == snake[i].y) {
-      checkGameIsOver = true
-    }*/
   }
 }
 
@@ -171,10 +175,6 @@ function drawScore() {
 //check if the snake has eaten an apple
 function collisionApple() {
   positionx == applex && positiony == appley ? CheckApple = true && snake.push({x: positionx, y: positiony}) : undefined
-  /*if (positionx == applex && positiony == appley) {
-    CheckApple = true
-    snake.push({ x: positionx, y: positiony })
-  }*/
 }
 
 //get a random integer
@@ -188,15 +188,10 @@ function generateApple() {
     while (!appleSpawnIsOkay) {
       applex = getRandomInt(16)
       appley = getRandomInt(16)
-      //let applePosition = [applex, appley]
       CheckApple = false
 
       for (let i = 0; i < snake.length; ++i) {
-        if (snake[i].x == applex && snake[i].y == appley) {
-          appleSpawnIsOkay = false
-        } else {
-          appleSpawnIsOkay = true
-        }
+        snake[i].x == applex && snake[i].y == appley ? appleSpawnIsOkay = false : appleSpawnIsOkay = true //TODO : check
       }
     }
     appleSpawnIsOkay = false
@@ -206,20 +201,18 @@ function generateApple() {
 //draw the apple
 function drawApple() {
   ctx.beginPath()
-  ctx.lineWidth = 5
+  ctx.lineWidth = 1
   ctx.fillStyle = "lightgreen"
+  ctx.strokeStyle = "white"
   ctx.fillRect((applex * 50), (appley * 50), 50, 50)
+  ctx.strokeRect((applex * 50), (appley * 50), 50, 50)
   ctx.stroke()
 }
 
 //event if the player click on an arrow
 function arrowclicked(event) {
-  if (!checkOneMoveByFrame) {
-    if (event.keyCode == 37 && direction != 'R') { direction = 'L'; checkOneMoveByFrame = true }
-    else if (event.keyCode == 39 && direction != 'L') { direction = 'R'; checkOneMoveByFrame = true }
-    else if (event.keyCode == 38 && direction != 'D') { direction = 'U'; checkOneMoveByFrame = true }
-    else if (event.keyCode == 40 && direction != 'U') { direction = 'D'; checkOneMoveByFrame = true }
-  }
+  checkOneMoveByFrame ? undefined : event.keyCode == 37 && direction != 'R' ? direction = 'L' : event.keyCode == 39 && direction != 'L' ? direction = 'R' : event.keyCode == 38 && direction != 'D' ? direction = 'U' : event.keyCode == 40 && direction != 'U' ? direction = 'D' : undefined 
+  checkOneMoveByFrame = true
 }
 
 ///////////////////////////////////////////////////////////////////////// Snippet ///////////////////////////////////////////////
