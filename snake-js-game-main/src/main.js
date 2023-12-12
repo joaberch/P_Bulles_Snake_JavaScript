@@ -1,6 +1,5 @@
 import '../css/style.css'
-//import { snakeclass } from './snake'
-//import('./snake')
+//import snakeclass from './snake'
 
 
 /* TODO :
@@ -9,13 +8,13 @@ namespace/classes/commit log
 Test
 Using classes (snake/apple)
 use fonction fleches
-use "rest"
+use "rest" "..."
 use snake.forEach
 */
 
 ////////////////////////////////////////////////////////////// Variable declaration //////////////////////////////////////////////////
 
-const speed = 200                                         //Speed at which the game is refreshing
+const speed = 150                                         //Speed at which the game is refreshing
 let applex = getRandomInt(16), appley = getRandomInt(16)  //Apple coordinate
 let positionx = 4, positiony = 0                          //Position of the head of the snake
 let direction = 'R'                                       //Direction the snake is going (R = Right | L = Left | U = Up | D = Down)
@@ -46,7 +45,7 @@ const move = () => {
 
   //All function for the game are inside
   main()
-
+  
   //Refresh every seconds
   setTimeout(() => {
     requestAnimationFrame(move)
@@ -60,7 +59,6 @@ document.addEventListener('keydown', arrowclicked) //Change the direction
 function main() {
   collisionApple()
   manageSnake()
-  //new snakeclass()
   generateApple()
   drawApple()
   drawScore()
@@ -81,8 +79,7 @@ function drawAllSnake() {
   for (let i = 0; i < snake.length; i++) {
     ctx.beginPath()
     ctx.lineWidth = 5
-    ctx.strokeStyle = "pink"
-    ctx.fillStyle = "red"
+    i == snake.length-1 ? ctx.fillStyle = "blue" : ctx.fillStyle = "red"
     ctx.fillRect(snake[i].x * 50, snake[i].y * 50, 50, 50)
     ctx.stroke()
   }
@@ -99,13 +96,6 @@ function moveTheHead() {
   direction == "L" ? --positionx:undefined
   direction == "D" ? ++positiony:undefined
   direction == "U" ? --positiony:undefined
-
-  /*if (direction == 'R') { ++positionx } //Going right
-  else if (direction == 'L') { --positionx } //Going left
-  else if (direction == 'D') { ++positiony } //Going up
-  else if (direction == 'U') { --positiony } //Going down
-  */
-
 }
 
 //add a chunk of the snake where the head is
@@ -262,4 +252,5 @@ canvas.addEventListener('click', function (evt) {
   }
 }, false)
 
+//loop
 requestAnimationFrame(move)

@@ -1,18 +1,10 @@
-export class snakeclass {
-    
+export default class snakeclass {
+
     constructor() {
         let positionx = 4, positiony = 0                                                //Position of the head of the snake
         let direction = 'R'                                                             //Direction the snake is going (R = Right | L = Left | U = Up | D = Down)
         let snake = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }]    //coordinates of each chunk of the snake
-        this.manageSnakes()
-    }
-
-    manageSnakes() {
-        addAChunckOfTheSnakeAtThePlaceOfTheHead()
-        moveTheHead()
-
-        deleteSnakeTail()
-        drawAllSnake()
+        let checkOneMoveByFrame
     }
 
     //add a chunk of the snake where the head is
@@ -22,10 +14,10 @@ export class snakeclass {
 
     //Moving the snake
     moveTheHead() {
-        if (direction == 'R') { ++positionx } //Going right
-        else if (direction == 'L') { --positionx } //Going left
-        else if (direction == 'D') { ++positiony } //Going up
-        else if (direction == 'U') { --positiony } //Going down
+        direction == "R" ? ++positionx : undefined
+        direction == "L" ? --positionx : undefined
+        direction == "D" ? ++positiony : undefined
+        direction == "U" ? --positiony : undefined
     }
 
     //Remove a chunk of the snake
@@ -38,15 +30,9 @@ export class snakeclass {
         for (let i = 0; i < snake.length; i++) {
             ctx.beginPath()
             ctx.lineWidth = 5
-            ctx.strokeStyle = "pink"
-            ctx.fillStyle = "red"
+            i == snake.length - 1 ? ctx.fillStyle = "blue" : ctx.fillStyle = "red"
             ctx.fillRect(snake[i].x * 50, snake[i].y * 50, 50, 50)
             ctx.stroke()
         }
     }
 }
-
-class className {
-    method() {}
-}
-className.method()
