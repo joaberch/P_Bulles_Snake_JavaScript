@@ -82,7 +82,7 @@ const bigMacPrice = 5.99
 const mcChickenPrice = 4.99
 const doubleCheeseBurgerPrice = 2.99
 const friesPrice = 2.99
-const McNuggetsPrice = 3.49
+const mcNuggetsPrice = 3.49
 const saladPrice = 2.79
 const cokePrice = 1.99
 const iceTeaPrice = 1.99
@@ -91,7 +91,15 @@ const waterPrice = 1.49
 /////////////////////////////// Write value /////////////////////////////////////////
 
 //Writing the price of the product
-
+document.getElementById('bigMacPrice').innerText = "$ " + bigMacPrice
+document.getElementById('mcChickenPrice').innerText = "$ " + mcChickenPrice
+document.getElementById('DoubleCheeseBurgerPrice').innerText = "$ " + doubleCheeseBurgerPrice
+document.getElementById('FriesPrice').innerText = "$ " + friesPrice
+document.getElementById('McNuggetsPrice').innerText = "$ " + mcNuggetsPrice
+document.getElementById('SaladPrice').innerText = "$ " + saladPrice
+document.getElementById('CokePrice').innerText = "$ " + cokePrice
+document.getElementById('IceTeaPrice').innerText = "$ " + iceTeaPrice
+document.getElementById('WaterPrice').innerText = "$ " + waterPrice
 
 //Writing the number of product wanted
 document.getElementById('bigMacNumber').innerText = bigMacNumber //TODO : innerText or innerHTML
