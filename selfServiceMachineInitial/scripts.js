@@ -99,16 +99,20 @@ function moreBigMac()
 
 function lessBigMac()
 {
-  bigMacNumber > 0 ? document.getElementById('bigMacNumber').innerText = --bigMacNumber : undefined
+  if (bigMacNumber > 0){
+  document.getElementById('bigMacNumber').innerText = --bigMacNumber
   totalSum -= bigMacPrice
   displayTotalValue()
+  }
 }
 
 function lessMcChicken()
 {
-  mcChickenNumber > 0 ? document.getElementById('McChickenNumber').innerText = --mcChickenNumber : undefined
+  if (mcChickenNumber > 0) {
+  document.getElementById('McChickenNumber').innerText = --mcChickenNumber
   totalSum -= mcChickenPrice
   displayTotalValue()
+  }
 }
 
 function moreMcChicken()
@@ -120,9 +124,11 @@ function moreMcChicken()
 
 function lessDoubleCheeseBurger()
 {
-  doubleCheeseBurgerNumber > 0 ? document.getElementById('DoubleCheeseBurgerNumber').innerText = --doubleCheeseBurgerNumber : undefined
+  if (doubleCheeseBurgerNumber > 0) {
+  document.getElementById('DoubleCheeseBurgerNumber').innerText = --doubleCheeseBurgerNumber
   totalSum -= doubleCheeseBurgerPrice
   displayTotalValue()
+  }
 }
 
 function moreDoubleCheeseBurger()
@@ -134,9 +140,11 @@ function moreDoubleCheeseBurger()
 
 function lessFries()
 {
-  friesNumber > 0 ? document.getElementById('FriesNumber').innerText = --friesNumber : undefined
+  if (friesNumber > 0) {
+  document.getElementById('FriesNumber').innerText = --friesNumber
   totalSum -= friesPrice
   displayTotalValue()
+  }
 }
 
 function moreFries()
@@ -148,9 +156,11 @@ function moreFries()
 
 function lessMcNuggets()
 {
-  mcNuggetsNumber > 0 ? document.getElementById('McNuggetsNumber').innerText = --mcNuggetsNumber : undefined
+  if (mcNuggetsNumber > 0) {
+  document.getElementById('McNuggetsNumber').innerText = --mcNuggetsNumber
   totalSum -= mcNuggetsPrice
   displayTotalValue()
+  }
 }
 
 function moreMcNuggets()
@@ -162,9 +172,11 @@ function moreMcNuggets()
 
 function lessSalad()
 {
-  saladNumber > 0 ? document.getElementById('SaladNumber').innerText = --saladNumber : undefined
+  if (saladNumber > 0) {
+  document.getElementById('SaladNumber').innerText = --saladNumber
   totalSum -= saladPrice
   displayTotalValue()
+  }
 }
 
 function moreSalad()
@@ -176,9 +188,11 @@ function moreSalad()
 
 function lessCoke()
 {
-  cokeNumber > 0 ? document.getElementById('CokeNumber').innerText = --cokeNumber : undefined
+  if (cokeNumber > 0) {
+  document.getElementById('CokeNumber').innerText = --cokeNumber
   totalSum -= cokePrice
   displayTotalValue()
+  }
 }
 
 function moreCoke()
@@ -190,9 +204,11 @@ function moreCoke()
 
 function lessIceTea()
 {
-  iceTeaNumber > 0 ? document.getElementById('IceTeaNumber').innerText = --iceTeaNumber : undefined
+  if (iceTeaNumber > 0) {
+  document.getElementById('IceTeaNumber').innerText = --iceTeaNumber
   totalSum -= iceTeaPrice
   displayTotalValue()
+  }
 }
 
 function moreIceTea()
@@ -204,9 +220,11 @@ function moreIceTea()
 
 function lessWater()
 {
-  waterNumber > 0 ? document.getElementById('WaterNumber').innerText = --waterNumber : undefined
+  if (waterNumber > 0) {
+  document.getElementById('WaterNumber').innerText = --waterNumber
   totalSum -= waterPrice
   displayTotalValue()
+  }
 }
 
 function moreWater()
@@ -222,29 +240,39 @@ function displayTotalValue()
   document.getElementById('totalSum').innerText = "$ " + totalSum.toFixed(2)
 }
 
+function displayTotalPrice()
+{
+  //Writing the price of the product
+  document.getElementById('bigMacPrice').innerText = "$ " + bigMacPrice
+  document.getElementById('mcChickenPrice').innerText = "$ " + mcChickenPrice
+  document.getElementById('DoubleCheeseBurgerPrice').innerText = "$ " + doubleCheeseBurgerPrice
+  document.getElementById('FriesPrice').innerText = "$ " + friesPrice
+  document.getElementById('McNuggetsPrice').innerText = "$ " + mcNuggetsPrice
+  document.getElementById('SaladPrice').innerText = "$ " + saladPrice
+  document.getElementById('CokePrice').innerText = "$ " + cokePrice
+  document.getElementById('IceTeaPrice').innerText = "$ " + iceTeaPrice
+  document.getElementById('WaterPrice').innerText = "$ " + waterPrice
+}
+
+function displayTotalNumber()
+{
+  //Writing the number of product wanted
+  document.getElementById('bigMacNumber').innerText = bigMacNumber //TODO : innerText or innerHTML
+  document.getElementById('McChickenNumber').innerText = mcChickenNumber
+  document.getElementById('DoubleCheeseBurgerNumber').innerText = doubleCheeseBurgerNumber
+  document.getElementById('FriesNumber').innerText = friesNumber
+  document.getElementById('McNuggetsNumber').innerText = mcNuggetsNumber
+  document.getElementById('SaladNumber').innerText = saladNumber
+  document.getElementById('CokeNumber').innerText = cokeNumber
+  document.getElementById('IceTeaNumber').innerText = iceTeaNumber
+  document.getElementById('WaterNumber').innerText = waterNumber
+}
+
 /////////////////////////////// Write value /////////////////////////////////////////
 
-//Writing the price of the product
-document.getElementById('bigMacPrice').innerText = "$ " + bigMacPrice
-document.getElementById('mcChickenPrice').innerText = "$ " + mcChickenPrice
-document.getElementById('DoubleCheeseBurgerPrice').innerText = "$ " + doubleCheeseBurgerPrice
-document.getElementById('FriesPrice').innerText = "$ " + friesPrice
-document.getElementById('McNuggetsPrice').innerText = "$ " + mcNuggetsPrice
-document.getElementById('SaladPrice').innerText = "$ " + saladPrice
-document.getElementById('CokePrice').innerText = "$ " + cokePrice
-document.getElementById('IceTeaPrice').innerText = "$ " + iceTeaPrice
-document.getElementById('WaterPrice').innerText = "$ " + waterPrice
+displayTotalPrice()
 
-//Writing the number of product wanted
-document.getElementById('bigMacNumber').innerText = bigMacNumber //TODO : innerText or innerHTML
-document.getElementById('McChickenNumber').innerText = mcChickenNumber
-document.getElementById('DoubleCheeseBurgerNumber').innerText = doubleCheeseBurgerNumber
-document.getElementById('FriesNumber').innerText = friesNumber
-document.getElementById('McNuggetsNumber').innerText = mcNuggetsNumber
-document.getElementById('SaladNumber').innerText = saladNumber
-document.getElementById('CokeNumber').innerText = cokeNumber
-document.getElementById('IceTeaNumber').innerText = iceTeaNumber
-document.getElementById('WaterNumber').innerText = waterNumber
+displayTotalNumber()
 
 //Write the total number
 displayTotalValue()
