@@ -6,7 +6,7 @@ import snakeclass from './snake'
 check copy/paste
 namespace/classes/commit log
 Using classes (snake/apple)
-use fonction fleches
+use arrowed function
 use "rest" "..."
 use snake.forEach
 */
@@ -83,7 +83,7 @@ function drawAllSnake() {
     ctx.beginPath()
     ctx.lineWidth = 1
     ctx.strokeStyle = "white"
-    element.x == positionx && element.y == positiony ? ctx.fillStyle = "blue" : ctx.fillStyle = "red"
+    element.x == positionx && element.y == positiony ? ctx.fillStyle = "pink" : ctx.fillStyle = "red"
     ctx.fillRect(element.x * 50, element.y * 50, 50, 50)
     ctx.strokeRect(element.x * 50, element.y * 50, 50, 50)
     ctx.stroke()
@@ -185,8 +185,9 @@ function generateApple() {
       applex = getRandomInt(16)
       appley = getRandomInt(16)
       CheckApple = false
+      appleSpawnIsOkay = true
 
-      snake.forEach((element) => element.x == applex && element.y == appley ? appleSpawnIsOkay = false : appleSpawnIsOkay = true) //TODO : check
+      snake.forEach((element) => element.x == applex && element.y == appley ? appleSpawnIsOkay = false : undefined) //TODO : check
     }
     appleSpawnIsOkay = false
   }
