@@ -170,7 +170,7 @@ function drawScore() {
 
 //check if the snake has eaten an apple
 function collisionApple() {
-  positionx == applex && positiony == appley ? CheckApple = true && snake.push({x: positionx, y: positiony}) : undefined
+  checkGameIsOver ? undefined : positionx == applex && positiony == appley ? CheckApple = true && snake.push({x: positionx, y: positiony}) : undefined
 }
 
 //get a random integer
