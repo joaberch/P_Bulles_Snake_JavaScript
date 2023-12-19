@@ -75,7 +75,7 @@ let cokeNumber = 0
 let iceTeaNumber = 0
 let waterNumber = 0
 
-let totalSum
+let totalSum = 0
 
 ///////////////////////////////// Const ////////////////////////////////////////////
 const bigMacPrice = 5.99
@@ -93,91 +93,127 @@ const waterPrice = 1.49
 function moreBigMac()
 {
   document.getElementById('bigMacNumber').innerText = ++bigMacNumber
+  totalSum += bigMacPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function lessBigMac()
 {
   bigMacNumber > 0 ? document.getElementById('bigMacNumber').innerText = --bigMacNumber : undefined
+  totalSum -= bigMacPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function lessMcChicken()
 {
   mcChickenNumber > 0 ? document.getElementById('McChickenNumber').innerText = --mcChickenNumber : undefined
+  totalSum -= mcChickenPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function moreMcChicken()
 {
   document.getElementById('McChickenNumber').innerText = ++mcChickenNumber
+  totalSum += mcChickenPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function lessDoubleCheeseBurger()
 {
   doubleCheeseBurgerNumber > 0 ? document.getElementById('DoubleCheeseBurgerNumber').innerText = --doubleCheeseBurgerNumber : undefined
+  totalSum -= doubleCheeseBurgerPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function moreDoubleCheeseBurger()
 {
   document.getElementById('DoubleCheeseBurgerNumber').innerText = ++doubleCheeseBurgerNumber
+  totalSum += doubleCheeseBurgerPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function lessFries()
 {
   friesNumber > 0 ? document.getElementById('FriesNumber').innerText = --friesNumber : undefined
+  totalSum -= friesPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function moreFries()
 {
   document.getElementById('FriesNumber').innerText = ++friesNumber
+  totalSum += friesPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function lessMcNuggets()
 {
   mcNuggetsNumber > 0 ? document.getElementById('McNuggetsNumber').innerText = --mcNuggetsNumber : undefined
+  totalSum -= mcNuggetsPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function moreMcNuggets()
 {
   document.getElementById('McNuggetsNumber').innerText = ++mcNuggetsNumber
+  totalSum += mcNuggetsPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function lessSalad()
 {
   saladNumber > 0 ? document.getElementById('SaladNumber').innerText = --saladNumber : undefined
+  totalSum -= saladPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function moreSalad()
 {
   document.getElementById('SaladNumber').innerText = ++saladNumber
+  totalSum += saladPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function lessCoke()
 {
   cokeNumber > 0 ? document.getElementById('CokeNumber').innerText = --cokeNumber : undefined
+  totalSum -= cokePrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function moreCoke()
 {
   document.getElementById('CokeNumber').innerText = ++cokeNumber
+  totalSum += cokePrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function lessIceTea()
 {
   iceTeaNumber > 0 ? document.getElementById('IceTeaNumber').innerText = --iceTeaNumber : undefined
+  totalSum -= iceTeaPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function moreIceTea()
 {
   document.getElementById('IceTeaNumber').innerText = ++iceTeaNumber
+  totalSum += iceTeaPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function lessWater()
 {
   waterNumber > 0 ? document.getElementById('WaterNumber').innerText = --waterNumber : undefined
+  totalSum -= waterPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 function moreWater()
 {
   document.getElementById('WaterNumber').innerText = ++waterNumber
+  totalSum += waterPrice
+  document.getElementById('totalSum').innerText = totalSum
 }
 
 //
@@ -205,3 +241,6 @@ document.getElementById('SaladNumber').innerText = saladNumber
 document.getElementById('CokeNumber').innerText = cokeNumber
 document.getElementById('IceTeaNumber').innerText = iceTeaNumber
 document.getElementById('WaterNumber').innerText = waterNumber
+
+//Write the total number
+document.getElementById('totalSum').innerText = totalSum
