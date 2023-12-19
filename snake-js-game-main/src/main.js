@@ -3,12 +3,8 @@ import snakeclass from './snake'
 
 
 /* TODO :
-check copy/paste
-namespace/classes/commit log
 Using classes (snake/apple)
-use arrowed function
 use "rest" "..."
-use snake.forEach
 */
 
 ////////////////////////////////////////////////////////////// Variable declaration //////////////////////////////////////////////////
@@ -16,7 +12,7 @@ use snake.forEach
 let applex = getRandomInt(16), appley = getRandomInt(16)  //Apple coordinate
 let positionx = 4, positiony = 0                          //Position of the head of the snake
 let direction = 'R'                                       //Direction the snake is going (R = Right | L = Left | U = Up | D = Down)
-let CheckApple = false                                    //Check whether there's an apple in the game
+let checkApple = false                                    //Check whether there's an apple in the game
 let checkGameIsRunning = true                             //Check whether the game is playing or it's in the game over menu
 let checkGameIsOver                                       //Check whether the game is over
 let appleSpawnIsOkay                                      //Check whether the apple is spawning at a good position
@@ -120,7 +116,7 @@ function gameInit() {
   direction = "R"
   checkGameIsOver = false
   snake = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }]
-  CheckApple = true
+  checkApple = true
 }
 
 //Draw the game over menu
@@ -173,7 +169,7 @@ function drawScore() {
 
 //Check if the snake has eaten an apple
 function collisionApple() {
-  checkGameIsOver ? undefined : positionx == applex && positiony == appley ? CheckApple = true && snake.push({x: positionx, y: positiony}) : undefined
+  checkGameIsOver ? undefined : positionx == applex && positiony == appley ? checkApple = true && snake.push({x: positionx, y: positiony}) : undefined
 }
 
 //Get a random integer
@@ -183,11 +179,11 @@ function getRandomInt(max) {
 
 //Generate a new apple
 function generateApple() {
-  if (CheckApple) {
+  if (checkApple) {
     while (!appleSpawnIsOkay) {
       applex = getRandomInt(16)
       appley = getRandomInt(16)
-      CheckApple = false
+      checkApple = false
       appleSpawnIsOkay = true
 
       //Check if the apple is spawning on a chunk of the snake

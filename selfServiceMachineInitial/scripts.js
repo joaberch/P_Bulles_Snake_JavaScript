@@ -90,6 +90,9 @@ const waterPrice = 1.49
 
 /////////////////////////////// Write value /////////////////////////////////////////
 
+//Writing the price of the product
+
+
 //Writing the number of product wanted
 document.getElementById('bigMacNumber').innerText = bigMacNumber //TODO : innerText or innerHTML
 document.getElementById('McChickenNumber').innerText = mcChickenNumber
