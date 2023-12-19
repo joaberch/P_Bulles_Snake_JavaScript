@@ -88,6 +88,100 @@ const cokePrice = 1.99
 const iceTeaPrice = 1.99
 const waterPrice = 1.49
 
+/////////////////////////////// Function ///////////////////////////////////////////
+//All the function about + and - button
+function moreBigMac()
+{
+  document.getElementById('bigMacNumber').innerText = ++bigMacNumber
+}
+
+function lessBigMac()
+{
+  bigMacNumber > 0 ? document.getElementById('bigMacNumber').innerText = --bigMacNumber : undefined
+}
+
+function lessMcChicken()
+{
+  mcChickenNumber > 0 ? document.getElementById('McChickenNumber').innerText = --mcChickenNumber : undefined
+}
+
+function moreMcChicken()
+{
+  document.getElementById('McChickenNumber').innerText = ++mcChickenNumber
+}
+
+function lessDoubleCheeseBurger()
+{
+  doubleCheeseBurgerNumber > 0 ? document.getElementById('DoubleCheeseBurgerNumber').innerText = --doubleCheeseBurgerNumber : undefined
+}
+
+function moreDoubleCheeseBurger()
+{
+  document.getElementById('DoubleCheeseBurgerNumber').innerText = ++doubleCheeseBurgerNumber
+}
+
+function lessFries()
+{
+  friesNumber > 0 ? document.getElementById('FriesNumber').innerText = --friesNumber : undefined
+}
+
+function moreFries()
+{
+  document.getElementById('FriesNumber').innerText = ++friesNumber
+}
+
+function lessMcNuggets()
+{
+  mcNuggetsNumber > 0 ? document.getElementById('McNuggetsNumber').innerText = --mcNuggetsNumber : undefined
+}
+
+function moreMcNuggets()
+{
+  document.getElementById('McNuggetsNumber').innerText = ++mcNuggetsNumber
+}
+
+function lessSalad()
+{
+  saladNumber > 0 ? document.getElementById('SaladNumber').innerText = --saladNumber : undefined
+}
+
+function moreSalad()
+{
+  document.getElementById('SaladNumber').innerText = ++saladNumber
+}
+
+function lessCoke()
+{
+  cokeNumber > 0 ? document.getElementById('CokeNumber').innerText = --cokeNumber : undefined
+}
+
+function moreCoke()
+{
+  document.getElementById('CokeNumber').innerText = ++cokeNumber
+}
+
+function lessIceTea()
+{
+  iceTeaNumber > 0 ? document.getElementById('IceTeaNumber').innerText = --iceTeaNumber : undefined
+}
+
+function moreIceTea()
+{
+  document.getElementById('IceTeaNumber').innerText = ++iceTeaNumber
+}
+
+function lessWater()
+{
+  waterNumber > 0 ? document.getElementById('WaterNumber').innerText = --waterNumber : undefined
+}
+
+function moreWater()
+{
+  document.getElementById('WaterNumber').innerText = ++waterNumber
+}
+
+//
+
 /////////////////////////////// Write value /////////////////////////////////////////
 
 //Writing the price of the product
