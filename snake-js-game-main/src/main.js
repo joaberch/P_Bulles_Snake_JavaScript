@@ -13,7 +13,6 @@ use snake.forEach
 
 ////////////////////////////////////////////////////////////// Variable declaration //////////////////////////////////////////////////
 
-const speed = 150                                         //Speed at which the game is refreshing
 let applex = getRandomInt(16), appley = getRandomInt(16)  //Apple coordinate
 let positionx = 4, positiony = 0                          //Position of the head of the snake
 let direction = 'R'                                       //Direction the snake is going (R = Right | L = Left | U = Up | D = Down)
@@ -36,6 +35,7 @@ let snake = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }]  //
 //const declaration
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
+const speed = 150                                         //Speed at which the game is refreshing
 
 const move = () => {
   //draw the grid
@@ -79,25 +79,27 @@ function main() {
 
 //Draw all the part of the snake
 function drawAllSnake() {
+  //Foreach chunk of the snake we draw it
   snake.forEach ((element) => {
     ctx.beginPath()
     ctx.lineWidth = 1
     ctx.strokeStyle = "white"
+    //If the it's the first element it is in pink because it is the head
     element.x == positionx && element.y == positiony ? ctx.fillStyle = "pink" : ctx.fillStyle = "red"
     ctx.fillRect(element.x * 50, element.y * 50, 50, 50)
     ctx.strokeRect(element.x * 50, element.y * 50, 50, 50)
     ctx.stroke()
   }
   )
-
 }
 
 //Remove a chunk of the snake
 function deleteSnakeTail() {
+  //Remove the last chunk of the snake
   snake.shift()
 }
 
-//Moving the snake
+//Moving the snake depending the direction
 function moveTheHead() {
   direction == "R" ? ++positionx:undefined
   direction == "L" ? --positionx:undefined
@@ -105,8 +107,9 @@ function moveTheHead() {
   direction == "U" ? --positiony:undefined
 }
 
-//add a chunk of the snake where the head is
+//Add a chunk of the snake where the head is
 function addAChunckOfTheSnakeWhereTheHeadIs() {
+  //Add a new chunk to the snake where the head is
   snake.push({ x: positionx, y: positiony })
 }
 
@@ -124,7 +127,7 @@ function gameInit() {
 function gameOver() {
   checkGameIsRunning = false
 
-  //draw a new background
+  //Draw a new background
   ctx.fillStyle = 'purple'
   ctx.fillRect(0, 0, 800, 800)
 
@@ -137,11 +140,11 @@ function gameOver() {
   ctx.font = "30px Arial"
   ctx.fillText(`Your score : ${snake.length - 4}`, 300, 350)
 
-  //draw the restart button
+  //Draw the restart button
   ctx.fillStyle = 'red'
   ctx.fillRect(250, 400, 300, 100)
 
-  //draw the border of the restart button
+  //Draw the border of the restart button
   ctx.strokeStyle = 'black'
   ctx.lineWidth = 5
   ctx.strokeRect(250, 400, 300, 100)
@@ -154,31 +157,31 @@ function gameOver() {
 
 //Check the game is over
 function checkGameOver() {
-  //in case the snake touches the border
+  //In case the snake touches the border
   positionx > 15 || positionx < 0 || positiony > 15 || positiony < 0 ? checkGameIsOver = true : undefined
 
-  //in case the snake touches one of his chunk
+  //In case the snake touches one of his chunk
   snake.forEach((element) => positionx == element.x && positiony == element.y ? checkGameIsOver = true : undefined)
 }
 
-//draw the score
+//Draw the score
 function drawScore() {
   ctx.fillStyle = "green"
   ctx.font = "30px Arial"
   ctx.fillText(snake.length - 4, 50, 60)
 }
 
-//check if the snake has eaten an apple
+//Check if the snake has eaten an apple
 function collisionApple() {
   checkGameIsOver ? undefined : positionx == applex && positiony == appley ? CheckApple = true && snake.push({x: positionx, y: positiony}) : undefined
 }
 
-//get a random integer
+//Get a random integer
 function getRandomInt(max) {
   return Math.floor(Math.random() * max)
 }
 
-//generate a new apple
+//Generate a new apple
 function generateApple() {
   if (CheckApple) {
     while (!appleSpawnIsOkay) {
@@ -187,13 +190,14 @@ function generateApple() {
       CheckApple = false
       appleSpawnIsOkay = true
 
-      snake.forEach((element) => element.x == applex && element.y == appley ? appleSpawnIsOkay = false : undefined) //TODO : check
+      //Check if the apple is spawning on a chunk of the snake
+      snake.forEach((element) => element.x == applex && element.y == appley ? appleSpawnIsOkay = false : undefined)
     }
     appleSpawnIsOkay = false
   }
 }
 
-//draw the apple
+//Draw the apple
 function drawApple() {
   ctx.beginPath()
   ctx.lineWidth = 1
@@ -237,5 +241,5 @@ canvas.addEventListener('click', function (evt) {
   }
 }, false)
 
-//loop
+//Loop
 requestAnimationFrame(move)
