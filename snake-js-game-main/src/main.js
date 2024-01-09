@@ -59,7 +59,7 @@ function main() {
   drawAllSnake()
   moveTheHead()
 
-  checkGameIsOver ? gameOver():undefined
+  checkGameIsOver ? drawGameOver():undefined
 
   checkGameOver()
   
@@ -72,8 +72,9 @@ function drawAllSnake() {
   snake.forEach ((element) => {
     ctx.beginPath()
     ctx.lineWidth = 1
+    ctx.fillStyle = 'black'
     ctx.strokeStyle = "white"
-    //If the it's the first element it is in pink because it is the head
+    //If the it's the first element it's in pink because it's the head
     element.x == positionx && element.y == positiony ? ctx.fillStyle = "pink" : ctx.fillStyle = "red"
     ctx.fillRect(element.x * 50, element.y * 50, 50, 50)
     ctx.strokeRect(element.x * 50, element.y * 50, 50, 50)
@@ -90,15 +91,14 @@ function deleteSnakeTail() {
 
 //Moving the snake depending the direction
 function moveTheHead() {
-  direction == "R" ? ++positionx:undefined
-  direction == "L" ? --positionx:undefined
-  direction == "D" ? ++positiony:undefined
+  direction == "R" ? ++positionx:
+  direction == "L" ? --positionx:
+  direction == "D" ? ++positiony:
   direction == "U" ? --positiony:undefined
 }
 
 //Add a chunk of the snake where the head is
 function addAChunckOfTheSnakeWhereTheHeadIs() {
-  //Add a new chunk to the snake where the head is
   snake.push({ x: positionx, y: positiony })
 }
 
@@ -113,7 +113,7 @@ function gameInit() {
 }
 
 //Draw the game over menu
-function gameOver() {
+function drawGameOver() {
   checkGameIsRunning = false
 
   //Draw a new background
@@ -197,7 +197,7 @@ function drawApple() {
   ctx.stroke()
 }
 
-//event if the player click on an arrow
+//event if the player clicks on an arrow
 function arrowclicked(event) {
   checkOneMoveByFrame ? undefined : event.keyCode == 37 && direction != 'R' ? direction = 'L' : event.keyCode == 39 && direction != 'L' ? direction = 'R' : event.keyCode == 38 && direction != 'D' ? direction = 'U' : event.keyCode == 40 && direction != 'U' ? direction = 'D' : undefined 
   checkOneMoveByFrame = true
@@ -230,5 +230,4 @@ canvas.addEventListener('click', function (evt) {
   }
 }, false)
 
-//Loop
 requestAnimationFrame(move)

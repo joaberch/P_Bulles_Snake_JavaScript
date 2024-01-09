@@ -106,140 +106,110 @@ const waterPrice = 1.49
 
 /////////////////////////////// Function ///////////////////////////////////////////
 //Activate the product
-function activate1()
+function activate(nbr)
 {
-  if (!checkBigMacIsActive) {
-  document.getElementById('quantity-area-1').style.visibility = 'visible'
-  checkBigMacIsActive = true
-  moreBigMac()
-  }
-}
-
-function activate2()
-{
-  if (!checkMcChickenIsActive) {
-  document.getElementById('quantity-area-2').style.visibility = 'visible'
-  checkMcChickenIsActive = true
-  moreMcChicken()
-  }
-}
-
-function activate3()
-{
-  if (!checkDoubleCheeseBurgerIsActive) {
-  document.getElementById('quantity-area-3').style.visibility = 'visible'
-  checkDoubleCheeseBurgerIsActive = true
-  moreDoubleCheeseBurger()
-  }
-}
-
-function activate4()
-{
-  if (!checkFriesIsActive) {
-  document.getElementById('quantity-area-4').style.visibility = 'visible'
-  checkFriesIsActive = true
-  moreFries()
-  }
-}
-
-function activate5()
-{
-  if (!checkMcNuggetsIsActive) {
-  document.getElementById('quantity-area-5').style.visibility = 'visible'
-  checkMcNuggetsIsActive = true
-  moreMcNuggets()
-  }
-}
-
-function activate6()
-{
-  if (!checkSaladIsActive) {
-  document.getElementById('quantity-area-6').style.visibility = 'visible'
-  checkSaladIsActive = true
-  moreSalad()
-  }
-}
-
-function activate7()
-{
-  if (!checkCokeIsActive) {
-  document.getElementById('quantity-area-7').style.visibility = 'visible'
-  checkCokeIsActive = true
-  moreCoke()
-  }
-}
-
-function activate8()
-{
-  if (!checkIceTeaIsActive) {
-  document.getElementById('quantity-area-8').style.visibility = 'visible'
-  checkIceTeaIsActive = true
-  moreIceTea()
-  }
-}
-
-function activate9()
-{
-  if (!checkWaterIsActive) {
-  document.getElementById('quantity-area-9').style.visibility = 'visible'
-  checkWaterIsActive = true
-  moreWater()
+  switch (nbr)
+  {
+    case 1:
+      if (!checkBigMacIsActive) {
+        document.getElementById('quantity-area-1').style.visibility = 'visible'
+        checkBigMacIsActive = true
+        moreBigMac()
+        }
+      break
+    case 2:
+      if (!checkMcChickenIsActive) {
+        document.getElementById('quantity-area-2').style.visibility = 'visible'
+        checkMcChickenIsActive = true
+        moreMcChicken()
+        }
+      break
+    case 3:
+      if (!checkDoubleCheeseBurgerIsActive) {
+        document.getElementById('quantity-area-3').style.visibility = 'visible'
+        checkDoubleCheeseBurgerIsActive = true
+        moreDoubleCheeseBurger()
+        }
+      break
+    case 4:
+      if (!checkFriesIsActive) {
+        document.getElementById('quantity-area-4').style.visibility = 'visible'
+        checkFriesIsActive = true
+        moreFries()
+        }
+      break
+    case 5:
+      if (!checkMcNuggetsIsActive) {
+        document.getElementById('quantity-area-5').style.visibility = 'visible'
+        checkMcNuggetsIsActive = true
+        moreMcNuggets()
+        }
+      break
+    case 6:
+      if (!checkSaladIsActive) {
+        document.getElementById('quantity-area-6').style.visibility = 'visible'
+        checkSaladIsActive = true
+        moreSalad()
+        }
+      break
+    case 7:
+      if (!checkCokeIsActive) {
+        document.getElementById('quantity-area-7').style.visibility = 'visible'
+        checkCokeIsActive = true
+        moreCoke()
+        }
+      break
+    case 8:
+      if (!checkIceTeaIsActive) {
+        document.getElementById('quantity-area-8').style.visibility = 'visible'
+        checkIceTeaIsActive = true
+        moreIceTea()
+        }
+      break
+    case 9:
+      if (!checkWaterIsActive) {
+        document.getElementById('quantity-area-9').style.visibility = 'visible'
+        checkWaterIsActive = true
+        moreWater()
+        }
+      break
   }
 }
 
 //desactivate all the products
-function desactivate1()
+function desactivate(nbr)
 {
-  checkBigMacIsActive = false
-  document.getElementById('quantity-area-1').style.visibility = 'hidden'
-}
+  document.getElementById('quantity-area-' + nbr).style.visibility = 'hidden'
 
-function desactivate2()
-{
-  checkMcChickenIsActive = false
-  document.getElementById('quantity-area-2').style.visibility = 'hidden'
-}
-
-function desactivate3()
-{
-  checkDoubleCheeseBurgerIsActive = false
-  document.getElementById('quantity-area-3').style.visibility = 'hidden'
-}
-
-function desactivate4()
-{
-  checkFriesIsActive = false
-  document.getElementById('quantity-area-4').style.visibility = 'hidden'
-}
-
-function desactivate5()
-{
-  checkMcNuggetsIsActive = false
-  document.getElementById('quantity-area-5').style.visibility = 'hidden'
-}
-
-function desactivate6()
-{
-  checkSaladIsActive = false
-  document.getElementById('quantity-area-6').style.visibility = 'hidden'
-}
-
-function desactivate7()
-{
-  checkCokeIsActive = false
-  document.getElementById('quantity-area-7').style.visibility = 'hidden'
-}
-
-function desactivate8()
-{
-  checkIceTeaIsActive = false
-  document.getElementById('quantity-area-8').style.visibility = 'hidden'
-}
-
-function desactivate9()
-{
-  checkWaterIsActive = false
-  document.getElementById('quantity-area-9').style.visibility = 'hidden'
+  switch (nbr) {
+    case '1':
+      setTimeout(checkBigMacIsActive = false,10000)
+      break
+    case 2:
+      checkMcChickenIsActive = false
+      break;
+    case 3:
+      checkDoubleCheeseBurgerIsActive = false
+      break;
+    case 4:
+      checkFriesIsActive = false
+      break;
+    case 5:
+      checkMcNuggetsIsActive = false
+      break;
+    case 6:
+      checkSaladIsActive = false
+      break;
+    case 7:
+      checkCokeIsActive = false
+      break;
+    case 8:
+      checkIceTeaIsActive = false
+      break;
+    case 9:
+      checkWaterIsActive = false
+      break;
+  }
 }
 
 //All the function about + and - button
@@ -258,7 +228,7 @@ function lessBigMac()
   totalSum -= bigMacPrice
   if (bigMacNumber == 0) {
     document.getElementById('bigMac').style.borderColor = 'black'
-    setTimeout(desactivate1,1)
+    setTimeout(desactivate('1'),1)
   }
   displayTotalValue()
   }
@@ -269,7 +239,7 @@ function lessMcChicken()
   if (mcChickenNumber > 0) {
   document.getElementById('McChickenNumber').innerText = --mcChickenNumber
   totalSum -= mcChickenPrice
-  if (mcChickenNumber == 0) {document.getElementById('McChicken').style.borderColor = 'black'; setTimeout(desactivate2,1)}
+  if (mcChickenNumber == 0) {document.getElementById('McChicken').style.borderColor = 'black'; setTimeout(desactivate('2'),1)}
   displayTotalValue()
   }
 }
@@ -287,7 +257,7 @@ function lessDoubleCheeseBurger()
   if (doubleCheeseBurgerNumber > 0) {
   document.getElementById('DoubleCheeseBurgerNumber').innerText = --doubleCheeseBurgerNumber
   totalSum -= doubleCheeseBurgerPrice
-  if (doubleCheeseBurgerNumber == 0) {document.getElementById('DoubleCheeseBurger').style.borderColor = 'black'; setTimeout(desactivate3,1)}
+  if (doubleCheeseBurgerNumber == 0) {document.getElementById('DoubleCheeseBurger').style.borderColor = 'black'; setTimeout(desactivate('3'),1)}
   displayTotalValue()
   }
 }
@@ -305,7 +275,7 @@ function lessFries()
   if (friesNumber > 0) {
   document.getElementById('FriesNumber').innerText = --friesNumber
   totalSum -= friesPrice
-  if (friesNumber == 0) {document.getElementById('Fries').style.borderColor = 'black'; setTimeout(desactivate4,1)}
+  if (friesNumber == 0) {document.getElementById('Fries').style.borderColor = 'black'; setTimeout(desactivate('4'),1)}
   displayTotalValue()
   }
 }
@@ -323,7 +293,7 @@ function lessMcNuggets()
   if (mcNuggetsNumber > 0) {
   document.getElementById('McNuggetsNumber').innerText = --mcNuggetsNumber
   totalSum -= mcNuggetsPrice
-  if (mcNuggetsNumber == 0) {document.getElementById('McNuggets').style.borderColor = 'black'; setTimeout(desactivate5,1)}
+  if (mcNuggetsNumber == 0) {document.getElementById('McNuggets').style.borderColor = 'black'; setTimeout(desactivate('5'),1)}
   displayTotalValue()
   }
 }
@@ -341,7 +311,7 @@ function lessSalad()
   if (saladNumber > 0) {
   document.getElementById('SaladNumber').innerText = --saladNumber
   totalSum -= saladPrice
-  if (saladNumber == 0) {document.getElementById('Salad').style.borderColor = 'black'; setTimeout(desactivate6,1)}
+  if (saladNumber == 0) {document.getElementById('Salad').style.borderColor = 'black'; setTimeout(desactivate('6'),1)}
   displayTotalValue()
   }
 }
@@ -359,7 +329,7 @@ function lessCoke()
   if (cokeNumber > 0) {
   document.getElementById('CokeNumber').innerText = --cokeNumber
   totalSum -= cokePrice
-  if (cokeNumber == 0) {document.getElementById('Coke').style.borderColor = 'black'; setTimeout(desactivate7,1)}
+  if (cokeNumber == 0) {document.getElementById('Coke').style.borderColor = 'black'; setTimeout(desactivate('7'),1)}
   displayTotalValue()
   }
 }
@@ -377,7 +347,7 @@ function lessIceTea()
   if (iceTeaNumber > 0) {
   document.getElementById('IceTeaNumber').innerText = --iceTeaNumber
   totalSum -= iceTeaPrice
-  if (iceTeaNumber == 0) {document.getElementById('IceTea').style.borderColor = 'black'; setTimeout(desactivate8,1)}
+  if (iceTeaNumber == 0) {document.getElementById('IceTea').style.borderColor = 'black'; setTimeout(desactivate('8'),1)}
   displayTotalValue()
   }
 }
@@ -395,7 +365,7 @@ function lessWater()
   if (waterNumber > 0) {
   document.getElementById('WaterNumber').innerText = --waterNumber
   totalSum -= waterPrice
-  if (waterNumber == 0) {document.getElementById('Water').style.borderColor = 'black'; setTimeout(desactivate9,1)}
+  if (waterNumber == 0) {document.getElementById('Water').style.borderColor = 'black'; setTimeout(desactivate('9'),1)}
   displayTotalValue()
   }
 }
