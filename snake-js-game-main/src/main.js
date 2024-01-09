@@ -1,11 +1,4 @@
 import '../css/style.css'
-import snakeclass from './snake'
-
-
-/* TODO :
-Using classes (snake/apple)
-use "rest" "..."
-*/
 
 ////////////////////////////////////////////////////////////// Variable declaration //////////////////////////////////////////////////
 

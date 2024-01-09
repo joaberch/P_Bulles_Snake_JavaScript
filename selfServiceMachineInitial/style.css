@@ -28,7 +28,7 @@ main > section.items {
 }
 
 section.items .product {
-    border: 1px solid rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
     margin: 6px;
     flex: 0 0 calc(33.333% - 24px);
     cursor: pointer;
@@ -97,6 +97,6 @@ section.summary table tbody tr:last-of-type th {
     padding-top: 4px;
 }
 
-#bigMac:active{
-    border: 2px solid rgb(29, 134, 233);
+.quantity-area {
+    visibility: hidden;
 }
