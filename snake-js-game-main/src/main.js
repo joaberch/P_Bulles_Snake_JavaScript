@@ -54,9 +54,10 @@ function main() {
 
   drawApple()
 
-  drawScore()
-
   drawAllSnake()
+
+  drawScore()
+  
   moveTheHead()
 
   checkGameIsOver ? drawGameOver():undefined
